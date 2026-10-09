@@ -40,3 +40,53 @@ let comprado = listaDeSuper.shift();
 
 // 6. Mostrar el tamaño final de la lista
 console.log(listaDeSuper.length);
+
+ // 1. Función para mostrar los productos numerados
+function logItems(arreglo) {
+    arreglo.forEach(function(producto, indice) {
+        console.log(indice + ": " + producto);
+    });
+}
+
+// 2. Súper App interactiva
+let comando = "";
+
+while (comando !== "salir") {
+    comando = prompt("¿Qué querés hacer? Escribí: nuevo, listar, borrar o salir");
+
+    if (comando === null) {
+        break;
+    }
+
+    comando = comando.toLowerCase();
+
+    if (comando === "nuevo") {
+        let producto = prompt("¿Qué producto querés agregar?");
+
+        if (producto !== null && producto !== "") {
+            listaDeSuper.push(producto);
+            console.log("Producto agregado: " + producto);
+        }
+
+    } else if (comando === "listar") {
+        logItems(listaDeSuper);
+
+    } else if (comando === "borrar") {
+        logItems(listaDeSuper);
+
+        let indice = Number(prompt("Escribí el índice del producto que querés borrar"));
+
+        if (Number.isInteger(indice) && indice >= 0 && indice < listaDeSuper.length) {
+            let eliminado = listaDeSuper.splice(indice, 1);
+            console.log("Producto eliminado: " + eliminado[0]);
+        } else {
+            console.log("Índice no válido");
+        }
+
+    } else if (comando === "salir") {
+        console.log("Saliste de la Súper App");
+
+    } else {
+        console.log("Comando no válido. Escribí: nuevo, listar, borrar o salir");
+    }
+}
